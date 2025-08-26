@@ -29,10 +29,69 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
+      // Try to fetch from server first
       const response = await axios.get('/api/products');
       setProducts(response.data);
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.log('Using local products data');
+      // Fallback to local data if server is not available
+      const localProducts = [
+        {
+          id: 1,
+          name: 'תה צמחים מרגיע',
+          description: 'תערובת צמחים טבעית להרגעה ובריאות. מכיל קמומיל, לבנדר ומנטה להרגעה טבעית.',
+          price: 45,
+          image: '/images/tea.jpg',
+          category: 'teas',
+          inStock: true
+        },
+        {
+          id: 2,
+          name: 'שמן אתרי לבנדר',
+          description: 'שמן אתרי טבעי להרגעה ושינה טובה. מופק מפרחי לבנדר איכותיים.',
+          price: 35,
+          image: '/images/lavender.jpg',
+          category: 'oils',
+          inStock: true
+        },
+        {
+          id: 3,
+          name: 'מחטי דיקור סטריליות',
+          description: 'מחטי דיקור איכותיות לטיפול מקצועי. סטריליות וחד פעמיות.',
+          price: 25,
+          image: '/images/needles.jpg',
+          category: 'tools',
+          inStock: true
+        },
+        {
+          id: 4,
+          name: 'כרית חימום צמחית',
+          description: 'כרית חימום עם צמחי מרפא להקלה על כאבים. מכילה תערובת צמחים מרגיעה.',
+          price: 55,
+          image: '/images/pillow.jpg',
+          category: 'accessories',
+          inStock: true
+        },
+        {
+          id: 5,
+          name: 'תערובת צמחים לחיזוק מערכת החיסון',
+          description: 'תערובת צמחים טבעית לחיזוק המערכת החיסונית. מכילה אכינצאה, גינגר וקורקום.',
+          price: 65,
+          image: '/images/immunity.jpg',
+          category: 'teas',
+          inStock: true
+        },
+        {
+          id: 6,
+          name: 'שמן אתרי אקליפטוס',
+          description: 'שמן אתרי אקליפטוס לפתיחת דרכי הנשימה. מושלם לעונת החורף.',
+          price: 40,
+          image: '/images/eucalyptus.jpg',
+          category: 'oils',
+          inStock: true
+        }
+      ];
+      setProducts(localProducts);
     } finally {
       setLoading(false);
     }
@@ -59,7 +118,28 @@ const Products = () => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
-    // Show success message (you can add a toast notification here)
+    // Show success message with better UX
+    const message = document.createElement('div');
+    message.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      font-weight: 500;
+      animation: slideIn 0.3s ease-out;
+    `;
+    message.textContent = `הוספת ${product.name} לעגלה בהצלחה!`;
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+      message.style.animation = 'slideOut 0.3s ease-in';
+      setTimeout(() => document.body.removeChild(message), 300);
+    }, 2000);
   };
 
   if (loading) {

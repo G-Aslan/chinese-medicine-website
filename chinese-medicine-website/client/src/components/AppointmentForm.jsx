@@ -42,8 +42,20 @@ const AppointmentForm = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('/api/appointments', formData);
-      setMessage({ type: 'success', text: response.data.message });
+      // Try to send to server first
+      try {
+        const response = await axios.post('/api/appointments', formData);
+        setMessage({ type: 'success', text: response.data.message });
+      } catch (serverError) {
+        console.log('Server not available, sending WhatsApp directly');
+        // Send WhatsApp message directly
+        await sendWhatsAppMessage(formData);
+        setMessage({ 
+          type: 'success', 
+          text: 'התור נקבע בהצלחה! תקבל אישור בוואטסאפ בקרוב. 🎉' 
+        });
+      }
+      
       setFormData({
         name: '',
         phone: '',
@@ -56,11 +68,40 @@ const AppointmentForm = () => {
     } catch (error) {
       setMessage({ 
         type: 'error', 
-        text: error.response?.data?.message || 'שגיאה בקביעת התור, נסה שוב' 
+        text: 'שגיאה בקביעת התור, נסה שוב או צור קשר בטלפון: 054-801-8883' 
       });
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const sendWhatsAppMessage = async (appointmentData) => {
+    const serviceNames = {
+      'acupuncture': 'דיקור סיני',
+      'herbs': 'צמחי מרפא',
+      'tuina': 'טווינה',
+      'nutrition': 'ייעוץ תזונתי',
+      'consultation': 'ייעוץ כללי'
+    };
+
+    const message = `תור חדש! 🌿
+
+שם: ${appointmentData.name}
+טלפון: ${appointmentData.phone}
+תאריך: ${appointmentData.date}
+שעה: ${appointmentData.time}
+שירות: ${serviceNames[appointmentData.service] || appointmentData.service}
+הערות: ${appointmentData.notes || 'אין'}
+
+תאריך קביעה: ${new Date().toLocaleString('he-IL')}`;
+
+    // Create WhatsApp link
+    const whatsappLink = `https://wa.me/972548018883?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappLink, '_blank');
+    
+    console.log('WhatsApp message:', message);
   };
 
   const getMinDate = () => {

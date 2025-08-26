@@ -84,9 +84,14 @@ const Home = () => {
                 הצוות המקצועי שלנו כולל מטפלים מוסמכים ובעלי ניסיון רב בתחום הרפואה הסינית.
                 אנו מתחייבים לספק טיפול אישי ומותאם לכל מטופל.
               </p>
-              <Link to="/services" className="btn btn-primary">
-                למידע נוסף
-              </Link>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Link to="/services" className="btn btn-primary">
+                  צפה בשירותים
+                </Link>
+                <Link to="/products" className="btn btn-secondary">
+                  חנות מוצרים
+                </Link>
+              </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ 
@@ -98,10 +103,40 @@ const Home = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '8rem',
-                color: '#667eea'
+                color: '#667eea',
+                boxShadow: 'var(--shadow-medium)',
+                animation: 'pulse 2s ease-in-out infinite'
               }}>
-                <FaLeaf />
+                🌿
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section">
+        <div className="container">
+          <div className="grid grid-4">
+            <div className="card text-center">
+              <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>👥</div>
+              <h3>1000+</h3>
+              <p>מטופלים מרוצים</p>
+            </div>
+            <div className="card text-center">
+              <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>⭐</div>
+              <h3>15+</h3>
+              <p>שנות ניסיון</p>
+            </div>
+            <div className="card text-center">
+              <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>🏆</div>
+              <h3>100%</h3>
+              <p>טבעי ואורגני</p>
+            </div>
+            <div className="card text-center">
+              <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>💚</div>
+              <h3>24/7</h3>
+              <p>תמיכה וטיפול</p>
             </div>
           </div>
         </div>

@@ -108,12 +108,26 @@ const Services = () => {
         <div className="container">
           <div className="grid grid-2">
             {services.map((service, index) => (
-              <div key={index} className="card">
+              <div key={index} className="card" style={{ 
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-medium)';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
+              }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                   <div style={{ 
                     fontSize: '3rem', 
                     color: '#667eea',
-                    marginBottom: '1rem'
+                    marginBottom: '1rem',
+                    transition: 'transform 0.3s ease'
+                  }} onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
+                  }} onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
                   }}>
                     {service.icon}
                   </div>

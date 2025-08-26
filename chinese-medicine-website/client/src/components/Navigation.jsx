@@ -40,7 +40,9 @@ const Navigation = () => {
               <Link to="/cart" className="nav-link cart-icon">
                 <FaShoppingCart />
                 {getCartCount() > 0 && (
-                  <span className="cart-badge">{getCartCount()}</span>
+                  <span className="cart-badge" style={{ animation: 'bounce 0.6s ease-in-out' }}>
+                    {getCartCount()}
+                  </span>
                 )}
               </Link>
             </li>
