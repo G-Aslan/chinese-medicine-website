@@ -1,5 +1,5 @@
 :root {
-  /* Pastel Colors */
+  /* Pastel Colors - Extended Palette */
   --primary-pastel: #E8F4F8;
   --secondary-pastel: #F0F8FF;
   --accent-pastel: #FFF0F5;
@@ -7,6 +7,18 @@
   --lavender-pastel: #F8F4FF;
   --peach-pastel: #FFF5F0;
   --sage-pastel: #F0F8F0;
+  
+  /* New Pastel Colors */
+  --rose-pastel: #fff1f2;
+  --yellow-pastel: #fffbeb;
+  --orange-pastel: #fff7ed;
+  --purple-pastel: #faf5ff;
+  --teal-pastel: #f0fdfa;
+  --pink-pastel: #fdf2f8;
+  --blue-pastel: #eff6ff;
+  --green-pastel: #f0fdf4;
+  --indigo-pastel: #eef2ff;
+  --cyan-pastel: #ecfeff;
   
   /* Text Colors */
   --text-primary: #2C3E50;

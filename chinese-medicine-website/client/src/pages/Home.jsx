@@ -36,18 +36,55 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
-          <h1>רפואה סינית מסורתית</h1>
-          <p>
-            ברוכים הבאים למרפאת הרפואה הסינית של רומי בן שושן. 
-            אנו מציעים טיפולים טבעיים ויעילים לשיפור הבריאות ואיכות החיים.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/services" className="btn btn-primary">
-              צפה בשירותים
-            </Link>
-            <Link to="/products" className="btn btn-secondary">
-              חנות מוצרים
-            </Link>
+          <div style={{ 
+            background: 'rgba(255, 255, 255, 0.9)', 
+            padding: '3rem', 
+            borderRadius: '20px',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+          }}>
+            <h1 style={{ 
+              fontSize: '3.5rem', 
+              marginBottom: '1.5rem',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textAlign: 'center'
+            }}>
+              רפואה סינית מסורתית 🌿
+            </h1>
+            <p style={{ 
+              fontSize: '1.3rem', 
+              lineHeight: '1.8',
+              marginBottom: '2rem',
+              textAlign: 'center',
+              color: '#4a5568'
+            }}>
+              ברוכים הבאים למרפאת הרפואה הסינית של <strong>רומי בן שושן</strong>. 
+              אנו מציעים טיפולים טבעיים ויעילים לשיפור הבריאות ואיכות החיים.
+              <br />
+              <span style={{ color: '#667eea', fontWeight: '600' }}>
+                "הבריאות היא העושר האמיתי" - הרפואה הסינית המסורתית
+              </span>
+            </p>
+            <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/services" className="btn btn-primary" style={{ 
+                fontSize: '1.1rem', 
+                padding: '15px 30px',
+                borderRadius: '50px',
+                boxShadow: '0 10px 20px rgba(102, 126, 234, 0.3)'
+              }}>
+                🌟 צפה בשירותים
+              </Link>
+              <Link to="/products" className="btn btn-secondary" style={{ 
+                fontSize: '1.1rem', 
+                padding: '15px 30px',
+                borderRadius: '50px',
+                boxShadow: '0 10px 20px rgba(255, 182, 193, 0.3)'
+              }}>
+                🛒 חנות מוצרים
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -55,15 +92,47 @@ const Home = () => {
       {/* Services Section */}
       <section className="section">
         <div className="container">
-          <h2 className="text-center mb-4">השירותים שלנו</h2>
+          <h2 className="text-center mb-4" style={{ 
+            fontSize: '2.5rem',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            marginBottom: '3rem'
+          }}>
+            🌟 השירותים שלנו
+          </h2>
           <div className="grid grid-4">
             {services.map((service, index) => (
-              <div key={index} className="card text-center" style={{ background: service.color }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>
+              <div key={index} className="card text-center" style={{ 
+                background: `linear-gradient(135deg, ${service.color} 0%, rgba(255,255,255,0.8) 100%)`,
+                border: '2px solid transparent',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                e.currentTarget.style.boxShadow = 'var(--shadow-soft)';
+              }}>
+                <div style={{ 
+                  fontSize: '4rem', 
+                  marginBottom: '1.5rem', 
+                  color: '#667eea',
+                  transition: 'transform 0.3s ease'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'rotate(10deg) scale(1.1)';
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'rotate(0deg) scale(1)';
+                }}>
                   {service.icon}
                 </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '1rem', color: '#2d3748' }}>
+                  {service.title}
+                </h3>
+                <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#4a5568' }}>
+                  {service.description}
+                </p>
               </div>
             ))}
           </div>
